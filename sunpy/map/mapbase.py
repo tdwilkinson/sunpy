@@ -559,10 +559,10 @@ scale:\t\t {scale}
 
         Returns
         -------
-        x : float
+        x : `~astropy.units.Quantity`
             Pixel coordinate on the CTYPE1 axis.
 
-        y : float
+        y : `~astropy.units.Quantity`
             Pixel coordinate on the CTYPE2 axis.
         """
         x, y = self.wcs.wcs_world2pix(x.to(u.deg).value, y.to(u.deg).value, origin)
@@ -578,10 +578,10 @@ scale:\t\t {scale}
         Parameters
         ----------
 
-        x : float
+        x : `~astropy.units.Quantity`
             Pixel coordinate of the CTYPE1 axis. (Normally solar-x).
 
-        y : float
+        y : `~astropy.units.Quantity`
             Pixel coordinate of the CTYPE2 axis. (Normally solar-y).
 
         origin : int
@@ -1288,10 +1288,10 @@ scale:\t\t {scale}
         if isinstance(draw_grid, bool):
             if draw_grid:
                 self.draw_grid(axes=axes)
-        elif isinstance(draw_grid, (int, long, float)):
+        elif isinstance(draw_grid, u.Quantity):
             self.draw_grid(axes=axes, grid_spacing=draw_grid)
         else:
-            raise TypeError("draw_grid should be bool, int, long or float")
+            raise TypeError("draw_grid should be a bool or an astropy Quantity.")
 
         figure.show()
 
